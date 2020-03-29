@@ -11,13 +11,16 @@ var bot = new Eris.CommandClient(config.d_token, {}, {
     prefix: "!"
 });
 
-bot.on("ready", () => {
+bot.on("ready", (msg) => {
+    console.log(msg)
 	game = {};
 	game.name = "color chan!";
 	game.type = 2;
 	bot.editStatus("idle", game);
 	console.log('Ready!');
 });
+
+$jamId = '<@441387335402258432>';
 
 bot.registerCommand("ping", "pong", { description: "Test command" });
 
