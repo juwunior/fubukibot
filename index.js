@@ -3,7 +3,7 @@ const sagiri = require("sagiri");
 const config = require("./config.json");
 
 const wa = require('./wa.js')
-const client = sagiri('246aadb10c16be60d562076bb748bba5bfc56fcb');
+const client = sagiri(config.sn_token);
 
 var bot = new Eris.CommandClient(config.d_token, {}, {
     description: "Um bot que busca imagem de anime",
@@ -12,7 +12,6 @@ var bot = new Eris.CommandClient(config.d_token, {}, {
 });
 
 bot.on("ready", (msg) => {
-    console.log(msg)
 	game = {};
 	game.name = "color chan!";
 	game.type = 2;
@@ -20,9 +19,15 @@ bot.on("ready", (msg) => {
 	console.log('Ready!');
 });
 
-$jamId = '<@441387335402258432>';
+bot.registerCommand("roll", async (msg, args)=>{
+    console.log(msg);
+    return Math.floor(Math.random() * 11); ;
+}, { description: "Test command" });
 
-bot.registerCommand("ping", "pong", { description: "Test command" });
+bot.registerCommand("ping", async (msg, args)=>{
+    console.log(msg);
+    return "ping";
+}, { description: "Test command" });
 
 bot.registerCommand("sauce", async (msg, args) => {
 	console.log(msg.content)
